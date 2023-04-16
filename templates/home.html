@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>welcome</h1>
+<div class="mb-3">
+    <button type="button" id="add-product-button" class="btn btn-primary" onclick="navigateToProductPage()">Add Category</button>
+
+<script>
+function navigateToProductPage() {
+  window.location.href = "index";
+}
+</script>
+
+</div>
+
+
+<div class="mb-3">
+        <button type="button"   id="Add category" class="btn btn-primary">Add Product</button>
+    <a href = "#"> </a>
+</div>
+
+
+<div class="mb-3">
+        <button type="button" id="create" class="btn btn-primary">Create</button>
+</div>
+{% endblock %}

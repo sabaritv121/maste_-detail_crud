@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+    <thead class="alert-success">
+        <tr>
+            <th>name</th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in read %}
+        <tr>
+            <td>{{ i.name }}</td>
+
+            <td><center>
+                <a class="btn btn-warning edit" name="{{ i.id }}">Edit</a>
+                <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

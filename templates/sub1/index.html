@@ -1,0 +1,16 @@
+{% extends 'sub1/sub1base.html' %}
+{% block body %}
+<form class="form-inline">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label>Subcategory name</label>
+        <input type="text" id="name" class="form-control" style="width:30%;" required="required"/>
+    </div>    
+
+    <div class="mb-3">    
+        <button type="button" id="create1" class="btn btn-primary">Create</button>
+    </div>
+</form>
+<br />
+<div id="result"></div>
+{% endblock %}
