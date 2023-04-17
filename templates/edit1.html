@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Category</h1>
+    <form id="edit-form" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name-input">Name:</label>
+            <input type="text" class="form-control" id="name-input" name="name" value="{{ category.name }}">
+        </div>
+        
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(function() {
+            $("#edit-form").submit(function(event) {
+                event.preventDefault();
+                var form = $(this);
+                var url = form.attr("action");
+                $.ajax({
+                    type: "POST",
+                    url: edit1/,
+                    data: form.serialize(),
+                    success: function(data) {
+                        // Update the table row with the new values
+                        $("#category-row-{{ category.id }} td:nth-child(1)").text(data.name);
+                        
+                        // Close the modal
+                        $("#edit-modal").modal("hide");
+                    },
+                    error: function(data) {
+                        alert("An error occurred while updating the category.");
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

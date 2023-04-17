@@ -91,6 +91,10 @@ $('#create').on('click', function(){
 
 });
 
+
+
+
+
 function Read(){
     $.ajax({
         async: true,
@@ -106,3 +110,9 @@ function Read(){
         }
     });
 }
+
+
+   
+
+
+

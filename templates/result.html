@@ -2,8 +2,10 @@
     <thead class="alert-success">
         <tr>
             <th>name</th>
+            <th>Edit</th>
+            <th>Enable/disable</th>
 
-            <th>Action</th>
+           
         </tr>
     </thead>
     <tbody>
@@ -13,9 +15,87 @@
 
             <td><center>
                 <a class="btn btn-warning edit" name="{{ i.id }}">Edit</a>
-                <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center>
+
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{ item.id }}">
+                    Edit
+                </button>
+                
+
+
+                <td  class="text-center">
+
+
+                    <button class="toggle-active-btn" data-category-id="{{ i.id }}" data-csrf-token="{{ csrf_token }}">
+                        {% if i.is_active %}
+                         Disable
+                        {% else %}
+                         Enable
+                        {% endif %}
+                      </button>
+                      
+                      <script>
+                        $(document).ready(function() {
+                          $('.toggle-active-btn').click(function() {
+                            var category_id = $(this).data('category-id');
+                            var csrf_token = $(this).data('csrf-token');
+                            
+                            $.ajax({
+                              url: '/category/' + category_id + '/toggle-active/',
+                              method: 'POST',
+                              data: {
+                                'csrfmiddlewaretoken': csrf_token
+                              },
+                              success: function(response) {
+                                if (response.status === 'success') {
+                                  $('.toggle-active-btn[data-category-id=' + category_id + ']').text(response.is_active ? 'Disable' : 'Enable');
+                                } else {
+                                  alert(response.message);
+                                }
+                              },
+                              error: function(xhr, status, error) {
+                                console.log('Error:', error);
+                              }
+                            });
+                          });
+                        });
+                        </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                    
+                    {% comment %} <td>
+                        {% if data.is_active %}
+                        <div>
+                      <td><a onclick="delet({{data.id}})" class="btn btn-secondary active"
+                          style="background-color:#252932; color: white;" role="button" aria-pressed="true">BlockUser</a></td>
+                      {% else %}
+                     <td><a onclick="({{data.id}})" class="btn btn-secondary active" role="button"
+                          aria-pressed="true">ENABLE</a></td> 
+
+                          {% comment %} <a href="{% url 'category_enable' i.id %}">ENABLE</a> {% endcomment %}
+                      {% comment %} {% endif %} {% endcomment %}
+                      {% comment %} </td> {% endcomment %}
+                </td>
+
+               
+
+
+
+               
+
+
+                {% comment %} <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center> {% endcomment %}
             </td>
         </tr>
         {% endfor %}
     </tbody>
 </table>
+
+
+{% comment %} #modal# {% endcomment %}
+

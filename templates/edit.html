@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block body %}
-    <form>
+    <form> 
         {% csrf_token %}
         <input type="hidden" id="member_id" value="{{ data.id }}"/>
         <div class="mb-3">
@@ -11,5 +11,8 @@
         <div class="mb-3">
             <button type="button" id="update" class="btn btn-warning">Update</button>
         </div>
-    </form>
+    </form>  
+
+
+    
 {% endblock %}
