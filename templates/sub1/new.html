@@ -1,0 +1,43 @@
+<form id="projectForm" method="post">
+    {% csrf_token %}
+    <input type="text" id="productname" name="productname" />
+    <input type="text" id="category" name="category" />
+    <input type="checkbox" id="isActive" name="is_active" />
+    <button type="button" id="createProjectBtn">Create Project</button>
+</form>
+
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- AJAX request to create_project view -->
+<script>
+$(document).ready(function() {
+    $('#createProjectBtn').click(function() {
+        var productname = $('#productname').val();
+        var category = $('#category').val();
+        var isActive = $('#isActive').prop('checked');
+
+        // Send AJAX request to create_project view
+        $.ajax({
+            url: 'create1/',
+            type: 'POST',
+            data: {
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                project_name: projectName,
+                dep_id: depId,
+                is_active: isActive,
+            },
+            success: function(response) {
+                if (response.status === 'success') {
+                    alert('Project created successfully');
+                } else {
+                    alert('Failed to create project');
+                }
+            },
+            error: function() {
+                alert('Failed to create project');
+            }
+        });
+    });
+});
+</script>

@@ -8,6 +8,7 @@ from django.views.decorators.http import require_http_methods
 
 # Create your views here.
 from category_app.models import Category, Product
+from .forms import ProductForm
 
 
 def home(request):
@@ -91,12 +92,27 @@ def index1(request):
     return render(request,'sub1/index.html')
 
 
+#createdetail
+
+@csrf_exempt
 def create1(request):
-    data = Product(name=request.POST['name'] )
-    
-    data.is_active = False
-    data.save()
-    return redirect('/')
+    if request.method == 'POST':
+        product_name = request.POST.get('product_name')
+        category = request.POST.get('category')
+        is_active = request.POST.get('is_active')
+
+        # Create a new project instance
+        project = Product(product_name=product_name, category=category, is_active=is_active)
+        project.save()
+
+        response_data = {'status': 'success', 'message': ' created successfully'}
+    else:
+        response_data = {'status': 'error', 'message': 'Invalid request'}
+
+    return JsonResponse(response_data)
+
+
+
 
 def read1(request):
     read = Product.objects.all()
