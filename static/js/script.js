@@ -106,7 +106,7 @@ function Read(){
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
         },
         success: function(response){
-            $('#result').html(response);
+            $('#resultt').html(response);
         }
     });
 }

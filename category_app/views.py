@@ -7,7 +7,7 @@ from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_http_methods
 
 # Create your views here.
-from category_app.models import Category, Product
+from category_app.models import Category,Product
 from .forms import ProductForm
 
 
@@ -35,6 +35,7 @@ def edit(request, id):
     data = Category.objects.get(id=id)
     context = {'data': data}
     return render(request, 'edit.html', context)
+    # return redirect('/')
     
 
 
@@ -93,24 +94,40 @@ def index1(request):
 
 
 #createdetail
+def new(request):
+    return render(request,'sub1/new.html')
 
+
+
+
+#subcategory creation
+
+#add subcategory
 @csrf_exempt
-def create1(request):
-    if request.method == 'POST':
-        product_name = request.POST.get('product_name')
-        category = request.POST.get('category')
-        is_active = request.POST.get('is_active')
+def create_project(request):
+    values=Category.objects.all()
 
-        # Create a new project instance
-        project = Product(product_name=product_name, category=category, is_active=is_active)
+    if request.method == 'POST':
+        category = request.POST.get('category')
+        print(category)
+        product_name = request.POST.get('product_name')
+       
+        # # Create a new project instance
+        project = Product(category=category, product_name=product_name)
         project.save()
 
-        response_data = {'status': 'success', 'message': ' created successfully'}
-    else:
-        response_data = {'status': 'error', 'message': 'Invalid request'}
+        response_data = {'status': 'success', 'message': 'Project type created successfully'}
+    # else:
+    #     response_data = {'status': 'error', 'message': 'Invalid request'}
+        
+        return JsonResponse(response_data)
+    return render(request,'sub1/index.html',{'values':values})
 
-    return JsonResponse(response_data)
 
+
+
+
+   
 
 
 

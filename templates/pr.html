@@ -1,4 +1,4 @@
-{% extends 'sub1/sub1base.html' %}
+{% extends 'base.html' %}
 {% block body %}
 {% load static %}
 <form class="form-inline">
@@ -91,5 +91,6 @@
 
 
 <br />
-<div id="resultt"></div>
+
+{% comment %} <script src="{% static 'js/category.js' %}"></script> {% endcomment %}
 {% endblock %}

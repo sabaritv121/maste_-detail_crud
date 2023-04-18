@@ -1,7 +1,22 @@
+{% extends 'sub1/sub1base.html' %}
+{% block body %}
 <form id="projectForm" method="post">
     {% csrf_token %}
     <input type="text" id="productname" name="productname" />
-    <input type="text" id="category" name="category" />
+    {% comment %} <input type="text" id="category" name="category" /> {% endcomment %}
+
+    <div class="form-group">
+                <label for="">Category</label>
+                <div class="form-group">
+                  <select class="form-control" name="category">
+                    {% for category in values %}
+                    <option value="{{category.id}}" >{{category.product_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+              </div>
+
+
     <input type="checkbox" id="isActive" name="is_active" />
     <button type="button" id="createProjectBtn">Create Project</button>
 </form>
@@ -23,9 +38,9 @@ $(document).ready(function() {
             type: 'POST',
             data: {
                 csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                project_name: projectName,
-                dep_id: depId,
-                is_active: isActive,
+                productname: productname,
+                category: category,
+                isActive: isActive,
             },
             success: function(response) {
                 if (response.status === 'success') {
@@ -41,3 +56,6 @@ $(document).ready(function() {
     });
 });
 </script>
+
+<div id="result"></div>
+{% endblock %}

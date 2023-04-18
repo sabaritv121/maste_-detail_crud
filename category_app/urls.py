@@ -17,9 +17,10 @@ urlpatterns = [
 
 
     #sub1
-
+    path('new',views.new,name='new'),
     path('index1', views.index1, name='index'),
-    path('create1/', views.create1, name='create'),
+    path("create_project",views.create_project,name="create_project"),
+   
     path('read1/', views.read1, name='read'),
     path('edit1/<int:id>', views.edit1, name='edit'),
     path('edit1/update1/<int:id>', views.update1, name='update'),
