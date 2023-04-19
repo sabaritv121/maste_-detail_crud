@@ -28,7 +28,7 @@ def create(request):
 def read(request):
     read = Category.objects.order_by('-id')
     context = {'read':read}
-    return render(request, 'result.html', context)
+    return render(request, 'resultt.html', context)
 
 
 def edit(request, id):
@@ -89,13 +89,13 @@ def toggle_category_active(request, category_id):
     
     return JsonResponse({'status': 'success', 'is_active': category.is_active})
 
-def index1(request):
-    return render(request,'sub1/index.html')
+# def index1(request):
+#     return render(request,'sub1/index.html')
 
 
-#createdetail
-def new(request):
-    return render(request,'sub1/new.html')
+# #createdetail
+# def new(request):
+#     return render(request,'sub1/new.html')
 
 
 
@@ -103,25 +103,25 @@ def new(request):
 #subcategory creation
 
 #add subcategory
-@csrf_exempt
-def create_project(request):
-    values=Category.objects.all()
+# @csrf_exempt
+# def create_project(request):
+#     values=Category.objects.all()
 
-    if request.method == 'POST':
-        category = request.POST.get('category')
-        print(category)
-        product_name = request.POST.get('product_name')
+#     if request.method == 'POST':
+#         category = request.POST.get('category')
+#         print(category)
+#         product_name = request.POST.get('product_name')
        
-        # # Create a new project instance
-        project = Product(category=category, product_name=product_name)
-        project.save()
+#         # # Create a new project instance
+#         project = Product(category=category, product_name=product_name)
+#         project.save()
 
-        response_data = {'status': 'success', 'message': 'Project type created successfully'}
-    # else:
-    #     response_data = {'status': 'error', 'message': 'Invalid request'}
+#         response_data = {'status': 'success', 'message': 'Project type created successfully'}
+#     # else:
+#     #     response_data = {'status': 'error', 'message': 'Invalid request'}
         
-        return JsonResponse(response_data)
-    return render(request,'sub1/index.html',{'values':values})
+#         return JsonResponse(response_data)
+#     return render(request,'sub1/index.html',{'values':values})
 
 
 
@@ -131,27 +131,3 @@ def create_project(request):
 
 
 
-def read1(request):
-    read = Product.objects.all()
-    context = {'read':read}
-    return render(request, 'result.html', context)
-
-
-def edit1(request, id):
-    data = Product.objects.get(id=id)
-    context = {'data': data}
-    return render(request, 'edit.html', context)
-
-
-def update1(request, id):
-    data = Product.objects.get(id=id)
-    data.name = request.POST['name']
-    data.is_active = False
-    data.save()
-    return redirect('/')
-
-
-def delete1(request, id):
-    obj = Product.objects.get(id=id)
-    obj.delete()
-    return redirect('/')

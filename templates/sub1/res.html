@@ -7,9 +7,10 @@
         </tr>
     </thead>
     <tbody>
-        {% for i in read %}
+        {% for i in readd %}
         <tr>
-            <td>{{ i.name }}</td>
+            <td>{{ i.category }}</td>
+            <td>{{ i.product_name}}</td>
 
             <td><center>
                 <a class="btn btn-warning edit" name="{{ i.id }}">Edit</a>

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from category_app import views
+from category_app import views,sub_views
 
 urlpatterns = [
     path('',views.home,name='home'),
@@ -13,16 +13,14 @@ urlpatterns = [
     # path('category_enable/<int:id>', views.category_enable, name='category_enable'),
     path('category/<int:category_id>/toggle-active/', views.toggle_category_active, name='toggle_category_active'),
 
-    path('edit1',views.edit1,name='edit1'),
+    # path('edit1',views.edit1,name='edit1'),
 
 
     #sub1
-    path('new',views.new,name='new'),
-    path('index1', views.index1, name='index'),
-    path("create_project",views.create_project,name="create_project"),
+    # path('new',views.new,name='new'),
+    # path('index1', views.index1, name='index1'),
+    path("create_project",sub_views.create_project,name="create_project"),
    
-    path('read1/', views.read1, name='read'),
-    path('edit1/<int:id>', views.edit1, name='edit'),
-    path('edit1/update1/<int:id>', views.update1, name='update'),
-    path('delete1/<int:id>', views.delete1, name='delete'),
+    path('read1',sub_views.read1, name='read1'),
+    
 ]

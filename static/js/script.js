@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    if($('#result') != null){
+    if($('#resultt') != null){
         Read();
     }
 
