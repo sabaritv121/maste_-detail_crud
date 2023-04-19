@@ -65,8 +65,8 @@ $(document).ready(function(){
         // if (category.trim() == "" || product_name.trim() == "") {
         //     alert("Please complete the required field");
         // } else 
-        if (!nameRegex.test(category) || !nameRegex.test(product_name)) {
-            alert("Name can only contain letters and spaces");
+        if (!nameRegex.test(product_name)) {
+            alert("please compleate the required fields");
         } else {
             $.ajax({
                 url: 'create_project',

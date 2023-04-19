@@ -10,12 +10,16 @@ def create_project(request):
     values=Category.objects.all()
 
     if request.method == 'POST':
+     
+        
         category = request.POST.get('category')
         print(category)
+        print("k")
         product_name = request.POST.get('product_name')
-       
+        print("product")
+        print(product_name)
         # # Create a new project instance
-        project = Product(category=category, product_name=product_name)
+        project = Product(category_id=category, product_name=product_name)
         project.save()
 
         response_data = {'status': 'success', 'message': 'Project type created successfully'}

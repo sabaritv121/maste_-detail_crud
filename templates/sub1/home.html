@@ -27,9 +27,9 @@
                             <form class="form-inline">
                                 {% csrf_token %}
                                 <div class="form-group">
-                                    <label for="">projectcategory</label>
+                                    <label for="">category</label>
                                     <div class="form-group">
-                                        <select id="projectcategory.id" name="category">
+                                        <select id="category" name="category">
                                             {% for i in values %}
                                             <option value="{{ i.id }}">{{ i.name }}</option>
                                             {% endfor %}
