@@ -1,9 +1,11 @@
 <table class="table table-bordered">
     <thead class="alert-success">
         <tr>
-            <th>name</th>
+            <th>Category</th>
 
-            <th>Action</th>
+            <th>Product_name</th>
+            <th> Action </th>
+            <th>Enable/disable</th>
         </tr>
     </thead>
     <tbody>
@@ -14,9 +16,24 @@
 
             <td><center>
                 <a class="btn btn-warning edit" name="{{ i.id }}">Edit</a>
-                <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center>
+                {% comment %} <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center> {% endcomment %}
             </td>
+
+            <td  class="text-center">
+
+
+                <button class="toggle-active-btn" data-category-id="{{ i.id }}" data-csrf-token="{{ csrf_token }}">
+                    {% if i.is_active %}
+                     Disable
+                    {% else %}
+                     Enable
+                    {% endif %}
+                  </button> </td>
+                
         </tr>
+
+        
+
         {% endfor %}
     </tbody>
 </table>

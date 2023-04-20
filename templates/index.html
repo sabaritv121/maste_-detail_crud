@@ -63,7 +63,7 @@
 
 {% block page_scripts %}
 
-<script>
+ <script>
   $(document).ready(function() {
     $(document).on("click",".toggle-active-btn",function() {
       var category_id = $(this).data('category-id');
@@ -77,6 +77,7 @@
         },
         success: function(response) {
           if (response.status === 'success') {
+            alert("confirm");
             $('.toggle-active-btn[data-category-id=' + category_id + ']').text(response.is_active ? 'Disable' : 'Enable');
           } else {
             alert(response.message);
@@ -88,6 +89,6 @@
       });
     });
   });
-  </script>
+  </script> 
 
             {% endblock %}

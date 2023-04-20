@@ -19,7 +19,7 @@ def create_project(request):
         print("product")
         print(product_name)
         # # Create a new project instance
-        project = Product(category_id=category, product_name=product_name)
+        project = Product(category_id=category, product_name=product_name,is_active = True)
         project.save()
 
         response_data = {'status': 'success', 'message': 'Project type created successfully'}
@@ -31,6 +31,20 @@ def create_project(request):
 
 
 def read1(request):
-    readd = Product.objects.all()
+    readd = Product.objects.order_by('-id')
     context = {'readd':readd}
     return render(request, 'sub1/res.html', context)
+
+
+
+@csrf_exempt
+def toggle_button(request,product_id):
+    try:
+        product = Product.objects.get(id=product_id)
+    except Product.DoesNotExist:
+        return JsonResponse({'status': 'error', 'message': 'Product not found'})
+    
+    product.is_active = not product.is_active
+    product.save()
+    
+    return JsonResponse({'status': 'success', 'is_active': product.is_active})

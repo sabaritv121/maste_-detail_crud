@@ -22,5 +22,7 @@ urlpatterns = [
     path("create_project",sub_views.create_project,name="create_project"),
    
     path('read1',sub_views.read1, name='read1'),
+
+    path('product/<int:product_id>/toggle-active/', sub_views.toggle_button, name='toggle_category_active'),
     
 ]
