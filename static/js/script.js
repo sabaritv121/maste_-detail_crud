@@ -59,7 +59,7 @@ $('#create').on('click', function(){
 //
 
 
-     $('#update').on('click', function(){
+    $('#update').on('click', function(){
     var name = $('#name').val();
     var nameRegex = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/;
 

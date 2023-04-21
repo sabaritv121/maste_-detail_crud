@@ -1,0 +1,42 @@
+<table class="table table-bordered">
+    <thead class="alert-success">
+        <tr>
+            <th>Subcategory</th>
+
+            <th>Product_name</th>
+
+        <th> Price </th>
+            <th> Action </th>
+            <th>Enable/disable</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for i in object %}
+        <tr>
+            <td>{{ i.subcategory }}</td>
+            <td>{{ i.product}}</td>
+            {% comment %} <td>{{ i.subcategory}}</td> {% endcomment %}
+            <td>{{ i.price}}</td>
+
+
+            <td><center>
+                <a class="btn btn-warning edit" name="{{ i.id }}">Edit</a>
+                {% comment %} <a class="btn btn-danger delete" name="{{ i.id }}">Delete</a></center> {% endcomment %}
+            </td>
+
+            <td  class="text-center">
+
+
+                <button class="toggle-active-btn" data-create-id="{{ i.id }}" data-csrf-token="{{ csrf_token }}">
+                    {% comment %} <button type="button" name = "toggle-active-btn" </button>    {% endcomment %}
+                    {% if i.is_active %}
+                     Disable
+                    {% else %}
+                     Enable
+                    {% endif %}
+                  </button> </td>
+                
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

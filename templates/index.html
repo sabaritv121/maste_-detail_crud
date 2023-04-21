@@ -88,6 +88,83 @@
       });
     });
   });
-  </script> 
+
+
+
+  
+
+
+
+  {% comment %} </script>  {% endcomment %}
+
+
+  
+    
+      
+{% comment %} $(document).ready(function() {
+  (document).on("click",".btn btn-success form-control",function() {
+    var editForm = $('#edit-form');
+    var editModal = $('#edit-modal');
+          
+      
+  
+      $('.edit-row').click(function() {
+        var row = $(this).closest('tr');
+        var pk = row.attr('id').split('-')[1];
+  
+        $.getJSON('/edit_row/' + pk + '/', function(data) {
+          $('#pk').val(pk);
+          $('#name').val(data.name);
+          
+          editModal.show();
+        });
+  
+        return false;
+      }); {% endcomment %}
+
+
+      function edit_row(id) {
+        // Get the row data using AJAX and populate the form inputs
+        $.ajax({
+            url: '/edit_row/'+ id,
+            type: 'POST',
+            data: {
+                'row_id': id,
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function(data) {
+                $('#rowId').val(id);
+                $('#name').val(data.name);
+                
+            }
+        });
+    
+        // Show the modal
+        $('#edit-modal').modal('show');
+      
+    }
+
+
+    function updateRow() {
+      // Get the form data and send it using AJAX
+      $.ajax({
+          url: '/update-row/',
+          type: 'POST',
+          data: {
+              'row_id': $('#rowId').val(),
+              'name': $('#name').val(),
+              'age': $('#age').val(),
+              'csrfmiddlewaretoken': '{{ csrf_token }}'
+          },
+          success: function() {
+              // Hide the modal and reload the page
+              $('#edit-modal').modal('hide');
+              location.reload();
+          }
+      });
+  }
+    </script>  
+
+
 
             {% endblock %}

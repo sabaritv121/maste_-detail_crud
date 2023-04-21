@@ -40,6 +40,33 @@ def edit(request, id):
     return render(request, 'edit.html', context)
     # return redirect('/')
     
+def edit_row(request, pk):
+    row = get_object_or_404(Category,pk=pk)
+    # row = Category.objects.get(pk=pk)
+    print(row)
+    print("hii")
+
+    if  request.method == 'POST':
+        print("post")
+        row.name = request.POST['name']
+        row.save()
+        return JsonResponse({'success': True})
+    else:
+        data = {
+            'name': row.name,
+           
+        }
+        return JsonResponse(data)
+
+
+@csrf_exempt
+def update_row(request):
+    if request.method == 'POST':
+        row_id = request.POST.get('row_id')
+        name = request.POST.get('name')
+        
+
+
 
 
 def update(request, id):
