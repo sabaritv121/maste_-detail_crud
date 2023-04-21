@@ -22,7 +22,19 @@ $('#create').on('click', function(){
             success: function(){
                 Read();
                 $('#name').val('');
+                // $('#create').modal('hide');
                 alert("New Category Successfully Added");
+                
+            // success: function(response){
+            //     if(response == "duplicate"){
+            //         alert("Category already exists");
+            //     } else {
+            //         Read();
+            //         $('#name').val('');
+            //         // $('#create').modal('hide');
+            //         alert("New Category Successfully Admmmded");
+            //     }
+            // }
             }
         });
     }

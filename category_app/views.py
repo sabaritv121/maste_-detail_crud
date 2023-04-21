@@ -21,13 +21,16 @@ def index(request):
 
 def create(request):
     data = Category(name=request.POST['name'] )
+    
+
     data.is_active = False
     data.save()
     return redirect('/')
 
 def read(request):
+    # data = Category.objects.get(id=id)
     read = Category.objects.order_by('-id')
-    context = {'read':read}
+    context = {'read':read }
     return render(request, 'resultt.html', context)
 
 

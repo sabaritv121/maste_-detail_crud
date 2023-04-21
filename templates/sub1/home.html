@@ -93,4 +93,36 @@
 <br />
 <div id="res"></div>
 
+
+{% block page_scripts %}
+
+ <script>
+  $(document).ready(function() {
+    $(document).on("click",".toggle-active-btn",function() {
+      var product_id = $(this).data('product-id');
+      var csrf_token = $(this).data('csrf-token');
+      
+      $.ajax({
+        url: '/product/' + product_id + '/toggle-active/',
+        method: 'POST',
+        data: {
+          'csrfmiddlewaretoken': csrf_token
+        },
+        success: function(response) {
+          if (response.status === 'success') {
+            $('.toggle-active-btn[data-product-id=' + product_id + ']').text(response.is_active ? 'Disable' : 'Enable');
+          } else {
+            alert(response.message);
+          }
+        },
+        error: function(xhr, status, error) {
+          console.log('Error:', error);
+        }
+      });
+    });
+ }); 
+ </script> 
+   
+   {% endblock%}
+
 {% endblock %}

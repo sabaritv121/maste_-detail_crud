@@ -22,7 +22,8 @@
             <td  class="text-center">
 
 
-                <button class="toggle-active-btn" data-category-id="{{ i.id }}" data-csrf-token="{{ csrf_token }}">
+                <button class="toggle-active-btn" data-product-id="{{ i.id }}" data-csrf-token="{{ csrf_token }}">
+                    {% comment %} <button type="button" name = "toggle-active-btn" </button>    {% endcomment %}
                     {% if i.is_active %}
                      Disable
                     {% else %}

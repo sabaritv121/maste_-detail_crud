@@ -41,6 +41,8 @@ def read1(request):
 def toggle_button(request,product_id):
     try:
         product = Product.objects.get(id=product_id)
+        print(product)
+        print("k")
     except Product.DoesNotExist:
         return JsonResponse({'status': 'error', 'message': 'Product not found'})
     

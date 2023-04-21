@@ -2,15 +2,14 @@
 {% block body %}
 <form class="form-inline">
   {% csrf_token %}
-   {% comment %} <div class="mb-3">
-        <label>Category name</label>
+<div class="mb-3">
+        {% comment %} <label>Category name</label>
         <input type="text" id="name" class="form-control" style="width:30%;" required="required"/>
     </div>     
     
-
- <div class="mb-3">    
+  <div class="mb-3">    
         <button type="button" id="create" class="btn btn-primary">Create</button>
-    </div>  {% endcomment %}
+    </div>    {% endcomment %}
 
 
 
